@@ -1,0 +1,175 @@
+:root {
+    --border-color: rgb(207, 203, 203);
+    --bg-color: rgba(28, 27, 27, 1);
+    --btn-color: rgb(70, 70, 70);
+    --text-color: rgb(180, 180, 180);
+    --section-color: rgb(40, 40, 40);
+    --main-section-width: calc(100% - 15.6%);
+}
+
+body, html{
+    margin: 0;
+    color: white;
+}
+
+body {
+    background-color: var(--bg-color);
+    width: 100%;
+}
+
+.body{
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+/* header and navbar styles */
+.header{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 12%;
+    border-right: var(--border-color) 1px solid;
+    padding: 25px;
+    border-radius: 0 10px 10px 0;
+    height: 94%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-right: 5px;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.navbtn {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--text-color) !important;
+    font-weight: bold;
+    font-size: large;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: var(--btn-color);
+    color: white !important;
+}
+
+.navbtn-active {
+    background-color: var(--btn-color);
+    color: white !important;
+}
+
+.svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* topbar styles */
+.mainContent {
+    position: absolute;
+    height: 100%;
+    width: var(--main-section-width);
+    left: 15.6%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.topSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 650px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: var(--border-color) 1px solid;
+}
+
+.top-right {
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.search-bar {
+    width: 300px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 20px;
+    margin: 0;
+    color: white;
+    background-color: var(--section-color);
+    background-image: url(./assets/icons8-search-50.png);
+    background-size: 20px;
+    background-position: 10px 8px; 
+    background-repeat: no-repeat;
+    padding: 10px 20px 10px 40px;
+}
+
+.icon-btn {
+    cursor: pointer;
+    transition: color 0.3s scale 0.4s;
+}
+.icon-btn:hover {
+    color: var(--text-color);
+    scale: 1.1;
+}
+
+/* Dashboard page styles */
+
+.recent-activity {
+    margin: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    background-color: brown;
+    width: var(--main-section-width);
+    border-radius: 15px;
+}
+
+.recent-activity p {
+    font-weight: bold;
+    font-size: large;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.recent-activity .history {
+    border-top: var(--border-color) 1px solid;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.recent-activity .history .company-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.recent-activity .history .company-name {
+    width: 30px;
+    height: 30px;
+}
+
+.recent-activity .history .expense {
+    color: red;
+}
+
+.recent-activity .history .gain {
+    color: green;
+}
+
