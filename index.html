@@ -21,18 +21,85 @@
                 </svg>                 
             </div>
         </div>
-        <div class="recent-activity">
-            <p>Recent Activity</p>
-            <div class="history">
-                <img src="./assets/icons8-search-50.png" class="company-icon" alt="recent activity icon"/>
-                <span class="company-name">Apple Inc.</span>
-                <span class="date">28/01/2024</span>
-                <span class="payment">-Rs120000</span>
+        <div class="topCards">
+            <!-- Expenses this month -->
+            <div class="expense-card">
+                <div class="info">
+                    <p>Monthly Expense</p>
+                    <p style="font-size: x-large;">-$120.00</p>
+                    <p class="currentMonth"></p>
+                </div>
+                <div class="single-chart">
+                    <svg viewBox="0 0 36 36" class="circular-chart red">
+                      <path class="circle-bg"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path class="circle"
+                        stroke-dasharray="60, 100"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <text x="18" y="20.35" class="percentage">60%</text>
+                    </svg>
+                </div>
+            </div>
+            <!-- income this month -->
+            <div class="expense-card">
+                <div class="info">
+                    <p>Monthly Income</p>
+                    <p style="font-size: x-large;">+$300.00</p>
+                    <p class="currentMonth"></p>
+                </div>
+                <div class="single-chart">
+                    <svg viewBox="0 0 36 36" class="circular-chart green">
+                      <path class="circle-bg"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path class="circle"
+                        stroke-dasharray="25, 100"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <text x="18" y="20.35" class="percentage">25%</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="type-graph">
+            <canvas id="myChart"></canvas> 
+            <div style="display: flex; flex-direction: column; gap: 50px; margin-top: 40px;">
+                <div class="legend">
+                    <span class="dot"></span><span>Real Estate</span>
+                    <span class="chart-price">$700.00</span>
+                </div>
+                <div class="legend">
+                    <span class="dot"></span><span>Stocks</span>
+                    <span class="chart-price">$700.00</span>
+                </div>
+                <div class="legend">
+                    <span class="dot"></span><span>Bonds</span>
+                    <span class="chart-price">$700.00</span>
+                </div>
+                <div class="legend">
+                    <span class="dot"></span><span>Cryptocurrencies</span>
+                    <span class="chart-price">$700.00</span>
+                </div>
+                <div class="legend">
+                    <span class="dot"></span><span>Commodities</span>
+                    <span class="chart-price">$700.00</span>
+                </div>
             </div>
         </div>
     </main>
     
 <script src="./jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./index.js"></script>
 </body>
 </html>

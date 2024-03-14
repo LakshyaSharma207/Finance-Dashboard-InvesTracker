@@ -3,8 +3,10 @@
     --bg-color: rgba(28, 27, 27, 1);
     --btn-color: rgb(70, 70, 70);
     --text-color: rgb(180, 180, 180);
-    --section-color: rgb(40, 40, 40);
+    --section-color: rgb(80, 80, 80);
     --main-section-width: calc(100% - 15.6%);
+    --estate-bg-color: #ff44003e;
+    --estate-text-color: #ff4400;
 }
 
 body, html{
@@ -120,6 +122,10 @@ body {
     padding: 10px 20px 10px 40px;
 }
 
+.search-bar:focus {
+    border: none;
+}
+
 .icon-btn {
     cursor: pointer;
     transition: color 0.3s scale 0.4s;
@@ -131,45 +137,179 @@ body {
 
 /* Dashboard page styles */
 
-.recent-activity {
+.topCards {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.expense-card {
     margin: 20px 0 20px 0;
     display: flex;
-    flex-direction: column;
-    background-color: brown;
-    width: var(--main-section-width);
+    flex-direction: row;
+    background-color: var(--section-color);
+    width: 300px;
+    height: 200px;
     border-radius: 15px;
 }
 
-.recent-activity p {
+.expense-card .info {
     font-weight: bold;
-    font-size: large;
     padding: 20px;
-    padding-top: 0;
 }
 
-.recent-activity .history {
-    border-top: var(--border-color) 1px solid;
+.expense-card .single-chart {
+    padding-top: 25px;
+    width: 45%;
+    justify-content: space-around;
+}
+.circular-chart {
+    display: block;
+    margin: 10px auto;
+    max-width: 80%;
+    max-height: 250px;
+}
+
+.circle-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 3.8;
+}
+  
+.circle {
+    fill: none;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    animation: progress 1s ease-out forwards;
+}
+  
+@keyframes progress {
+    0% {
+      stroke-dasharray: 0 100;
+    }
+}
+  
+.circular-chart.red .circle {
+    stroke: #ff4400;
+}
+  
+.circular-chart.green .circle {
+    stroke: rgb(37, 196, 95);
+}
+
+.percentage {
+    fill: white;
+    font-family: sans-serif;
+    font-size: 0.5em;
+    text-anchor: middle;
+}
+
+.type-graph {
+    width: var(--main-section-width);
+    height: 50%;
+    margin: 5px;
     padding: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--section-color);
     display: flex;
     flex-direction: row;
-    gap: 10px;
 }
 
-.recent-activity .history .company-icon {
-    width: 30px;
-    height: 30px;
+.myChart {
+    height: 100%;
+    width: 100%;
 }
 
-.recent-activity .history .company-name {
-    width: 30px;
-    height: 30px;
+.legend {
+    display: grid;
+    margin-left: 80px;
+    grid-template-columns: auto auto auto;
+    column-gap: 10px;
 }
 
-.recent-activity .history .expense {
-    color: red;
+.legend .dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: var(--estate-text-color);
+    display: inline;
 }
 
-.recent-activity .history .gain {
-    color: green;
+/* Investments table  */
+
+.tableWrapper {
+    background-color: var(--section-color);
+    width: var(--main-section-width);
+    margin: 20px;
+    border: none;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
+.tableWrapper p{
+    padding: 10px;
+    padding-left: 20px;
+    font-weight: bold; 
+    font-size: large;
+}
+
+#investmentTable {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#investmentTable tr{
+    border-top: var(--border-color) 1px solid;
+}
+
+#investmentTable .invest-type {
+    margin-inline: auto;
+    padding-inline: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--estate-bg-color);
+    color: var(--estate-text-color);
+    width: fit-content;
+    border-radius: 40px;
+}
+
+#investmentTable .invest-icon {
+    background-color: var(--estate-text-color);
+    padding: 15px;
+    border-radius: 100%;
+    margin: 0;
+}
+
+#investmentTable .invest-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#investmentTable .copy-svg {
+    position: relative;
+}
+#investmentTable .copy-svg::before {
+    content: "Copied!";
+    display: none;
+    min-width: fit-content;
+    padding: 10px;
+    min-height: 10px;
+    border-radius: 20px;
+    z-index: 2;
+    background-color: var(--border-color);
+    color: black;
+    position: absolute;
+    top: -46px;
+    left: 8px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+#investmentTable .copy-svg.show::before {
+    display: block;
+    opacity: 1;
+}
