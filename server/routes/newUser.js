@@ -49,9 +49,15 @@ router.post('/createUser', async(req, res) => {
                         });
                     });
                     console.log("Created new User");
-                    req.session.userId = results[0].userId;
-                    req.session.user = user;
-                    res.send({ success: true })
+                    const wallet_query = mysql.format("INSERT INTO wallet (userId, type, amount) VALUES (?, ?, ?)", [results[0].userId, 'visa', 1000])
+                    await connection.query (wallet_query, (err, result) => {
+                        if (err) throw (err);
+
+                        console.log('created new wallet');
+                        req.session.userId = results[0].userId;
+                        req.session.user = user;
+                        res.send({ success: true })
+                    })
                 });
             }
         });
