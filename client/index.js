@@ -12,9 +12,8 @@ $(document).ready(function () {
   $('.currentMonth').html(`For ${month}, ${year}`);
 
   // pie chart in dashboard
-  if ($('#myChart') == {}) {
+  if ($('#myChart').length) {
     const ctx = $('#myChart');
-
     tempdata = [12, 19, 3, 5, 2];
     new Chart(ctx, {
       type: 'pie',
@@ -62,5 +61,56 @@ $(document).ready(function () {
     }, function(err) {
         console.error('Could not copy text: ', err);
     });
+  })
+
+  // send POST request for sign up form
+  $('#signup-form').on('submit', function(e) {
+    e.preventDefault();
+
+    const name = $('#name').val();
+    const password = $('#password').val();
+    const re_password = $('#re-password').val();
+
+    if (password !== re_password) {
+      const errorMessage = 'Passwords don\'t match';
+      console.error('Error:', errorMessage);
+      return;
+    }
+
+    $.ajax({
+        url: '/signup/createUser',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ name: name, password: password }),
+        success: function(data) {
+          window.location.href = '/';
+        },
+        error: function(xhr, status, error) {
+          const errorMessage = JSON.parse(xhr.responseText).error;
+          console.error('Error:', errorMessage);
+        }
+    });
+  });
+
+  // send POST request for login form
+  $('#login-form').on('submit', function(e) {
+    e.preventDefault();
+
+    const name = $('#name').val();
+    const password = $('#password').val();
+
+    $.ajax({
+      url: '/login/authenticate',
+      type: 'POST',
+      contentType: 'application/json',
+      data: JSON.stringify({ name: name, password: password }),
+      success: function(data) {
+        window.location.href = '/';
+      },
+      error: function(xhr, status, error) {
+        const errorMessage = JSON.parse(xhr.responseText).error;
+        console.error('Error:', errorMessage);
+      }
+    })
   })
 });
