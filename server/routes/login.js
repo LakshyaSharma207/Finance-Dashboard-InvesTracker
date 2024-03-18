@@ -3,9 +3,16 @@ const router = express.Router();
 const db = require('../detabase.js');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql');
+const path = require('path');
+const session = require('express-session');
 
-router.post("/login", (req, res)=> {
-    const user = req.body.username;
+router.get('/', (req, res) => {
+    const clientPath = path.join(__dirname, '../../client');
+    res.sendFile(path.join(clientPath, 'login.html'));
+})
+
+router.post("/authenticate", (req, res)=> {
+    const user = req.body.name;
     const password = req.body.password;
 
     if (user.length <  1 || password.length < 6) {
@@ -27,11 +34,19 @@ router.post("/login", (req, res)=> {
                 res.status(404).send({ error: 'Incorrect Username or Password.' });
             } else {
                 // get hashedpassword from result of mysql
-                const hashedPassword = result[0].password 
+                const hashedPassword = result[0].password
                 if (await bcrypt.compare(password, hashedPassword)) {
-                    console.log("Login Successful");
-                    req.session.userName = user;
-                    // res.send(`${user} is logged in!`)
+                    // console.log("Login Successful");
+                    const query = mysql.format("SELECT userId FROM users WHERE userName = ?", [user]);
+                    const results = await new Promise((resolve, reject) => {
+                        connection.query(query, (error, results) => {
+                            if (error) reject(error);
+                            else resolve(results);
+                        });
+                    });
+                    req.session.userId = results[0].userId;
+                    req.session.user = user;
+                    res.send({ success: true })
                 } else {
                     // console.log("Password Incorrect")
                     res.status(404).send({ error: 'Incorrect Username or Password.' });

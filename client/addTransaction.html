@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <title>Finance Dashboard</title>
+</head>
+<body class="body">
+    <header class="header"></header>
+    <main class="mainContent">
+        <div class="topSection">
+            <h2>Dashboard</h2>
+            <div class="top-right">
+                <input type="text" class="search-bar" placeholder="Search...">
+                <svg class="svg icon-btn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M9.6 2.6A2 2 0 0 1 11 2h2a2 2 0 0 1 2 2l.5.3a2 2 0 0 1 2.9 0l1.4 1.3a2 2 0 0 1 0 2.9l.1.5h.1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2l-.3.5a2 2 0 0 1 0 2.9l-1.3 1.4a2 2 0 0 1-2.9 0l-.5.1v.1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2l-.5-.3a2 2 0 0 1-2.9 0l-1.4-1.3a2 2 0 0 1 0-2.9l-.1-.5H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2l.3-.5a2 2 0 0 1 0-2.9l1.3-1.4a2 2 0 0 1 2.9 0l.5-.1V4c0-.5.2-1 .6-1.4ZM8 12a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z" clip-rule="evenodd"/>
+                </svg>                
+                <svg class="svg icon-btn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 20a8 8 0 0 1-5-1.8v-.6c0-1.8 1.5-3.3 3.3-3.3h3.4c1.8 0 3.3 1.5 3.3 3.3v.6a8 8 0 0 1-5 1.8ZM2 12a10 10 0 1 1 10 10A10 10 0 0 1 2 12Zm10-5a3.3 3.3 0 0 0-3.3 3.3c0 1.7 1.5 3.2 3.3 3.2 1.8 0 3.3-1.5 3.3-3.3C15.3 8.6 13.8 7 12 7Z" clip-rule="evenodd"/>
+                </svg>                 
+            </div>
+        </div>
+        <!-- Adding new Transaction -->
+        <form id="addTransactionForm"> 
+            <fieldset> 
+                <legend>Name</legend> 
+                <input type="text" id="nameInput"> 
+            </fieldset> 
+            <fieldset> 
+                <legend>Type</legend> 
+                <div style="display: grid; gap: 10px; grid-template-columns: repeat(2, 1fr); margin-top: 5px;">
+                    <button class="btn" type="button" value="Bonds">Bonds</button>
+                    <button class="btn" type="button" value="Stock">Stock</button>
+                    <button class="btn" type="button" value="Real Estate">Real Estate</button>
+                    <button class="btn" type="button" value="Cryptocurrencies">Cryptocurrencies</button>
+                    <button class="btn" type="button" value="Commodities">Commodities</button>
+                </div>
+            </fieldset> 
+            <fieldset> 
+                <legend>Amount</legend> 
+                <input type="number" id="amountInput"> 
+            </fieldset> 
+            <button type="submit" class="btn">Add Transaction</button>
+        </form>
+    </main>
+    
+<script src="/jquery.js"></script>
+<script src="/index.js"></script>
+</body>
+</html>

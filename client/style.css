@@ -9,6 +9,8 @@
     --estate-text-color: #ff4400;
     --stocks-text-color: #25C45F;
     --stocks-bg-color: #25C45F3e;
+    --cryptocurrencies-bg-color: #e6bf5e3e;
+    --cryptocurrencies-text-color: #e6bf5e;
 }
 
 body, html{
@@ -276,6 +278,7 @@ body {
 
 #investmentTable tr{
     border-top: var(--border-color) 1px solid;
+    padding-left: 10px;
 }
 
 #investmentTable .invest-type {
@@ -289,16 +292,38 @@ body {
     border-radius: 40px;
 }
 
+#investmentTable .stock {
+    background-color: var(--stocks-bg-color);
+    color: var(--stocks-text-color);
+}
+#investmentTable .real-estate {
+    background-color: var(--estate-bg-color);
+    color: var(--estate-text-color);
+}
+#investmentTable .cryptocurrencies {
+    background-color: var(--cryptocurrencies-bg-color);
+    color: var(--cryptocurrencies-text-color);
+}
+
 #investmentTable .invest-icon {
     background-color: var(--estate-text-color);
     padding: 15px;
     border-radius: 100%;
     margin: 0;
 }
+#investmentTable .invest-name .real-estate {
+    background-color: var(--estate-text-color);
+}
+#investmentTable .invest-name .stock {
+    background-color: var(--stocks-text-color);
+}
+#investmentTable .invest-name .cryptocurrencies {
+    background-color: var(--cryptocurrencies-text-color);
+}
 
 #investmentTable .invest-name {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     gap: 20px;
 }
@@ -324,4 +349,62 @@ body {
 #investmentTable .copy-svg.show::before {
     display: block;
     opacity: 1;
+}
+
+#addTransaction {
+    background-color: var(--btn-color);
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    margin-right: 20px;
+}
+
+.tableWrapper .table-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* add transaction form  */
+#addTransactionForm { 
+    width: 400px; 
+    height: 400px;
+    margin-top: 100px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+} 
+#addTransactionForm fieldset { 
+    border: none; 
+    margin: 0; 
+    padding: 0; 
+} 
+#addTransactionForm fieldset legend { 
+    font-size: large; 
+    font-weight: bold; 
+} 
+#addTransactionForm fieldset input { 
+    width: 100%; 
+    padding: 5px; 
+    box-sizing: border-box; 
+}
+#addTransactionForm .btn {
+    background-color: var(--btn-color);
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 15px;
+}
+#addTransactionForm fieldset .btn:hover {
+    background-color: var(--section-color);
+}
+#addTransactionForm fieldset .selected {
+    background-color: rgb(120, 120, 120) !important;
 }

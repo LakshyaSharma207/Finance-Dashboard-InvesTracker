@@ -4,6 +4,7 @@ const db = require('../detabase.js');
 const bcrypt = require("bcrypt");
 const mysql = require('mysql');
 const path = require('path');
+const session = require('express-session');
 
 router.get('/', (req, res) => {
     const clientPath = path.join(__dirname, '../../client');
@@ -36,12 +37,21 @@ router.post('/createUser', async(req, res) => {
             //  console.log("User already exists");
              res.status(409).send({ error: 'User already exists.' });;
             } else {
-                await connection.query (insert_query, (err, result) => {
+                await connection.query (insert_query, async (err, result) => {
                     connection.release();
                     if (err) throw (err);
 
+                    const query = mysql.format("SELECT userId FROM users WHERE userName = ?", [user]);
+                    const results = await new Promise((resolve, reject) => {
+                        connection.query(query, (error, results) => {
+                            if (error) reject(error);
+                            else resolve(results);
+                        });
+                    });
                     console.log("Created new User");
-                    req.session.userName = user;
+                    req.session.userId = results[0].userId;
+                    req.session.user = user;
+                    res.send({ success: true })
                 });
             }
         });
