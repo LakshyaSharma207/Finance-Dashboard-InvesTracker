@@ -168,7 +168,7 @@ body {
     font-size: x-large;
 }
 
-#monthlyIncome {
+#monthlyIncome, #assetValue, #totalBalance{
     color: var(--stocks-text-color);
     font-size: x-large;
 }
@@ -250,6 +250,13 @@ body {
     margin: 0;
     background-color: var(--estate-text-color);
     display: inline;
+}
+
+.legend .stock {
+    background-color: var(--stocks-text-color);
+}
+.legend .cryptocurrencies {
+    background-color: var(--cryptocurrencies-text-color);
 }
 
 /* Investments table  */
@@ -407,4 +414,13 @@ body {
 }
 #addTransactionForm fieldset .selected {
     background-color: rgb(120, 120, 120) !important;
+}
+
+/* wallet page styles */
+.balance-card {
+    flex-direction: column !important;
+}
+.wallet-section {
+    display: flex;
+    flex-direction: column;
 }

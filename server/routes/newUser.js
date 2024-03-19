@@ -26,7 +26,7 @@ router.post('/createUser', async(req, res) => {
         if (err) throw (err)
         const sqlSearch = "SELECT * FROM users WHERE userName = ?"
         const search_query = mysql.format(sqlSearch, [user]) 
-        const sqlInsert = "INSERT INTO users VALUES (0, ?, ?)"
+        const sqlInsert = "INSERT INTO users (userName, password) VALUES (?, ?)"
         const insert_query = mysql.format(sqlInsert, [user, hashedPassword])
 
         await connection.query (search_query, async (err, result) => {  

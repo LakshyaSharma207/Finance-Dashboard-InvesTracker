@@ -6,43 +6,76 @@ $(document).ready(function () {
 
   const currentPage = window.location.href;
   const header = 'http://localhost:3000'
-
+  var chartData = {};
+  var valuesArray = []; 
   // get current Date
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const today = new Date()
+  if ($('#today')) {
+    $('#today').text(monthNames[today.getMonth()] + ' ' + today.getDate() + ', ' + today.getFullYear())
+  }
   const month = monthNames[today.getMonth()];
   const year = today.getFullYear();
   $('.currentMonth').html(`For ${month}, ${year}`);
 
-  // pie chart in dashboard
-  if ($('#myChart').length) {
-    const ctx = $('#myChart');
-    tempdata = [12, 19, 3, 5, 2];
-    new Chart(ctx, {
-      type: 'pie',
-      data: {
-        labels: ['Real Estate', 'Stocks', 'Bonds', 'Cryptocurrencies', 'Commodities'],
-        datasets: [{
-          label: '# of Votes',
-          data: tempdata,
-          backgroundColor: [
-            '#ff4400',
-            'rgb(37, 196, 95)',
-            'rgb(255, 205, 86)'
-          ], 
-          borderWidth: 1,
-          hoverOffset: 4,
-        }]
+  // Total Asset Calculation
+  if ($('#assetValue').length) {
+  var total = 0;
+    $.ajax({
+      url: '/transactions/fetch',
+      method: 'GET', 
+      success: function(data) {
+          transactionData = data.data;
+          transactionData.forEach(tr => {
+            total += tr.amount;
+            let type = tr.type.toString();
+            
+            if (chartData[type] === undefined){
+              chartData[type] = tr.amount;
+            } else {
+              chartData[type] += tr.amount;
+            }
+          });
+          console.log(chartData)
+          $('#assetValue').text(`₹${total}`);
+        if ($('#myChart').length) {
+          const valuesArray = [chartData['Real Estate'], chartData['Stock'], chartData['Bonds'], chartData['Cryptocurrencies'], chartData['Commodities']];
+          const ctx = $('#myChart');
+          new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: ['Real Estate', 'Stocks', 'Bonds', 'Cryptocurrencies', 'Commodities'],
+              datasets: [{
+                label: 'Amount',
+                data: valuesArray,
+                backgroundColor: [
+                  '#ff4400',
+                  '#25C45F',
+                  '#ff4400',
+                  '#e6bf5e',
+                  '#ff4400',
+                ], 
+                borderWidth: 1,
+                hoverOffset: 4,
+              }]
+            },
+            options: {
+              plugins: {
+                legend: {
+                  display: false,
+                }
+              }  
+            }
+          });
+        }
       },
-      options: {
-        plugins: {
-          legend: {
-            display: false,
-          }
-        }  
+      error: function(xhr, status, error) {
+        $('#assetValue').text('no assets owned')
       }
-    });
+    });  
   }
+  
+  // pie chart in dashboard
 
   // copy event in Investments table
   $('#investmentTable').on('click', '.copy-svg', function() {
