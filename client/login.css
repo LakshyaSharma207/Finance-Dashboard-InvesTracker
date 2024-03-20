@@ -1,0 +1,47 @@
+* {
+    background-color: #1c1b1b;
+}
+
+h2 {
+    color: #ffffff;
+}
+
+input {
+    color: black;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px  solid #ccc;
+    padding: 8px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    width: 300px;
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+.signup-link {
+    margin-top: 20px;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+input[type="submit"]:active {
+    transform: translateY(1px);
+}
