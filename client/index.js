@@ -4,6 +4,17 @@ $(document).ready(function () {
       $("header").load("/header.html"); 
   });
 
+  // modal script 
+  $(".close").click(function(){
+    $("#myModal").css("display", "none");
+  });
+  
+  $(window).click(function(event){
+    if ($(event.target).is('#myModal')) {
+      $("#myModal").css("display", "none");
+    }
+  });
+
   const currentPage = window.location.href;
   const header = 'http://localhost:3000'
   var chartData = {};
@@ -109,7 +120,8 @@ $(document).ready(function () {
 
     if (password !== re_password) {
       const errorMessage = 'Passwords don\'t match';
-      alert('Error:', errorMessage);
+      $("#myModal").css("display", "block");
+      $("#myModal p").text(errorMessage);
       return;
     }
 
@@ -123,7 +135,8 @@ $(document).ready(function () {
         },
         error: function(xhr, status, error) {
           const errorMessage = JSON.parse(xhr.responseText).error;
-          alert('Error:', errorMessage);
+          $("#myModal").css("display", "block");
+          $("#myModal p").text(errorMessage);
         }
     });
   });
@@ -147,7 +160,8 @@ $(document).ready(function () {
       },
       error: function(xhr, status, error) {
         const errorMessage = JSON.parse(xhr.responseText).error;
-        alert('Error:', errorMessage);
+        $("#myModal").css("display", "block");
+        $("#myModal p").text(errorMessage);
       }
     })
   })
@@ -176,7 +190,8 @@ $(document).ready(function () {
       },
       error: function(xhr, status, error) {
         const errorMessage = JSON.parse(xhr.responseText).error;
-        alert(errorMessage);
+        $("#myModal").css("display", "block");
+        $("#myModal p").text(errorMessage);
       }
     });  
   }
@@ -199,7 +214,8 @@ $(document).ready(function () {
     });
     if (!btn[0]) {
       const errorMessage = 'Selecting type is required';
-      alert(errorMessage);
+      $("#myModal").css("display", "block");
+      $("#myModal p").text(errorMessage);
       return;
     }
     const type = btn[0].value;
@@ -215,7 +231,8 @@ $(document).ready(function () {
       },
       error: function(xhr, status, error) {
         const errorMessage = JSON.parse(xhr.responseText).error;
-        alert(errorMessage);
+        $("#myModal").css("display", "block");
+        $("#myModal p").text(errorMessage);
       }
     })
   })

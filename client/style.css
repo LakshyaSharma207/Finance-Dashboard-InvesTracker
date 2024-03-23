@@ -20,10 +20,8 @@ body, html{
 
 body {
     background-color: var(--bg-color);
+    font-family: Arial, sans-serif;
     width: 100%;
-}
-
-.body{
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -77,6 +75,99 @@ body {
 .svg {
     width: 24px;
     height: 24px;
+}
+
+/* modal styles  */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 15px;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    color: var(--bg-color);
+    width: 20%; 
+    height: 20%;
+}
+
+.modal-content p {
+    text-align: center;
+    margin-top: 18%;
+    font-size: large;
+    font-weight: bold;
+}
+  
+.close {
+    color: var(--bg-color);
+    float: right;
+    scale: 1.1;
+    font-weight: bold;
+}
+  
+.close:hover, .close:focus {
+    color: var(--btn-color);
+    text-decoration: none;
+    cursor: pointer;
+    scale: 1.2;
+}  
+
+/* login page  */
+.login-container {
+    width: 200px;
+    padding: 20px;
+    margin-inline: auto;
+    margin-top: 200px;
+    text-align: center;
+    display: flex;
+    flex-direction: column !important;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    scale: 1.2;
+    border: var(--bg-color) 1px solid;
+    border-radius: 20px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.login-container input {
+    color: black;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px  solid #ccc;
+    padding: 8px;
+}
+.signup-link {
+    margin-top: 20px;
+}
+.login-container button[type="submit"]:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.login-container button[type='submit']:active {
+    transform: translateY(1px);
+}
+.login-container button {
+    padding: 5px;
+    padding-inline: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+}
+.login-container a {
+    color: var(--bg-color);
 }
 
 /* topbar styles */
