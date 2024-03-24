@@ -29,10 +29,59 @@
                 <p id="today"></p>
             </div>
             <div class="cards">
-                
+                <!-- TODO -->
+            </div>
+            <div class="quick-transfer">
+                <p class="title">quick transfer</p>
+                <div class="button_group">
+                    <button class="via_no" aria-label="via_no">via mobile no.</button>
+                    <button class="via_ac" aria-label="via_ac">via account no.</button>
+                </div>
+                <form onsubmit="return mySubmitFunction(event)">
+                    <div class="phone_no_info">
+                        <label for="phone_no"><img src="./images/india.png" alt="">&nbsp;+91 </label>
+                        <input type="number" name="phone_no" id="phone_no" placeholder="92934929331">
+                        <img src="./images/profile_pic.webp" alt="">
+                    </div>
+                    <div class="amount">
+                        <div>
+                            <label for="ruppes">₹</label>
+                            <input type="number" name="phone_no" id="rupees" placeholder="30,550.00">
+                        </div>
+                        <span>INR</span>
+                    </div>
+
+                    <input type="submit" value="send to john">
+                </form>
+            </div>
+            <div class="cards">
+                <div class="title_with_button">
+                    <p class="title">your cards</p>
+                    <div class="sliber_controller">
+                        <div class="swipe_next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-b9569cb577cd8d2e" aria-disabled="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8zm0-9h4v2h-4v3l-4-4 4-4v3z"></path>
+                            </svg>
+                        </div>
+                        <div class="swipe_previous swiper-button-disabled" tabindex="-1" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-b9569cb577cd8d2e" aria-disabled="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path d="M12 11V8l4 4-4 4v-3H8v-2h4zm0-9c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper mySwiper swiper-cards swiper-3d swiper-initialized swiper-horizontal swiper-watch-progress">
+                    <div class="swiper-wrapper" style="cursor: grab;" id="swiper-wrapper-b9569cb577cd8d2e" aria-live="polite">
+                        <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active" style="width: 248px; z-index: 3; transform: translate3d(0px, 0px, 0px) rotateZ(0deg) scale(1);" role="group" aria-label="1 / 3"><img src="./images/card1.webp" alt=""><div class="swiper-slide-shadow swiper-slide-shadow-cards" style="opacity: 0;"></div></div>
+                        <div class="swiper-slide swiper-slide-next" style="width: 248px; z-index: 2; transform: translate3d(calc(7.25% - 248px), 0px, -100px) rotateZ(2deg) scale(1);" role="group" aria-label="2 / 3"><img src="./images/card2.webp" alt=""><div class="swiper-slide-shadow swiper-slide-shadow-cards" style="opacity: 1;"></div></div>
+                        <div class="swiper-slide" style="width: 248px; z-index: 1; transform: translate3d(calc(13% - 496px), 0px, -200px) rotateZ(4deg) scale(1);" role="group" aria-label="3 / 3"><img src="./images/card3.webp" alt=""><div class="swiper-slide-shadow swiper-slide-shadow-cards" style="opacity: 1;"></div></div>
+                    </div>
+                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                <div class="swiper-page swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 1" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
             </div>
         </div>
-        
     </main>
     
 <script src="./jquery.js"></script>

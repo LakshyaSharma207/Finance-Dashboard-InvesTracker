@@ -515,3 +515,11 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.quick-transfer .button_group {
+    justify-content: space-evenly;
+}
+.quick-transfer p.title {
+    width: 100%;
+    text-align: center;
+}
