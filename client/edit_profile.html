@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link type="text/css" rel="stylesheet" href="./edit_profile.css">
+</head>
+<body>
+    
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="profile-icon">
+            <img src="profile-icon.png" alt="Profile Icon">
+        </div>
+        <h2>Welcome, Alexander</h2>
+    </div>
+
+    <form>
+        First Name: <input type="text" required maxlength="35">
+        <br>
+        <br>
+        Last Name: <input type="text" required maxlength="35">
+        <br>
+        <br>
+        Gender: <select>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Rather not say</option>
+        </select>
+        <br>
+        <br>
+        Phone: <select>
+            <option>Turkey (+90)</option>
+            <option selected="selected">India (+91)</option>
+            <option>Pakistan (+92)</option>
+        </select>
+        <input type="phone" maxlength="10">
+        <br>
+        <br>
+        Email: <input type="email">
+    </form>
+    <br>
+    <br>
+    <div class="edit-profile">
+        <input type="Submit">
+    </div>
+</div>
+
+<script src="./jquery.js"></script>
+<script src="./index.js"></script>
+</body>
+</html>
