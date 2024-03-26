@@ -54,16 +54,3 @@ app.use('/wallet', walletRoute);
 app.listen(3000, () => {
     console.log('server running at localhost:3000');
 })
-
-app.post('/add', (req, res) => {
-    const name = 'Apple';
-
-    db.query('INSERT INTO transaction (name) VALUES (?)', [name], (err, result) => {
-        if (err) {
-            console.log(err);
-            return;
-        }
-        console.log('successfully inserted values');
-        res.send(result);
-    })
-})

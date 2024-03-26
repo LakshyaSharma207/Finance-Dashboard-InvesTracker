@@ -62,9 +62,9 @@ $(document).ready(function () {
                 backgroundColor: [
                   '#ff4400',
                   '#25C45F',
-                  '#ff4400',
+                  '#4d4dff',
                   '#e6bf5e',
-                  '#ff4400',
+                  '#9500FF',
                 ], 
                 borderWidth: 1,
                 hoverOffset: 4,
@@ -179,6 +179,7 @@ $(document).ready(function () {
             table.append(`<tr id="${tr.id}">
             <td><div class="invest-name"><img class="svg invest-icon ${type}" src="assets/${type}.svg" alt="icon" /><span>${tr.name}</span></div></td>
             <td>${tr.date}</td>
+            <td>${tr.currency}</td>
             <td><div class="${type} invest-type">${tr.type}</div></td>
             <td>₹${tr.amount}</td>
             <td><div class="copy-svg"><svg class="svg" style="cursor: pointer;" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
@@ -219,15 +220,19 @@ $(document).ready(function () {
       return;
     }
     const type = btn[0].value;
+    var currency = $('input[name="currency"]:checked').val();
+    if (!currency) {
+      var currency = 'Credit';
+    }
 
     $.ajax({
       url: '/transactions/addnew',
       method: 'POST', 
       contentType: 'application/json',
-      data: JSON.stringify({ name: name, amount: amount, type: type }),
+      data: JSON.stringify({ name: name, amount: amount, type: type, currency: currency }),
       success: function() {
         console.log('success');
-        // window.location.href = header + '/transactions';
+        window.location.href = header + '/transactions';
       },
       error: function(xhr, status, error) {
         const errorMessage = JSON.parse(xhr.responseText).error;
@@ -236,5 +241,97 @@ $(document).ready(function () {
       }
     })
   })
+
+  // fetch data for wallets page
+  if (currentPage === header + "/wallet"){
+    $.ajax({
+      url: '/wallet/fetch',
+      method: 'GET', 
+      success: function(data) {
+          $('#userName').text(data.name)
+          const amount = data.balance[0].amount;
+          $('#totalBalance').text(`₹${amount}`)
+          // $('#planningContainer')
+          data.planning.forEach((item) => {
+            const percent = Math.floor((amount / item.total) * 100);
+            $('#planningContainer').append(`<div style="display: flex; flex-direction: column; gap: 20px;"><div class="expense-card plan-card">
+                <div id="${item.planning_id}" class="info">
+                    <p>${item.name}</p>
+                    <p class="plan-amount">₹${amount}</p> 
+                    <p style="font-weight: bold;">₹${item.total}</p>
+                </div>
+                <div class="single-chart">
+                    <svg viewBox="0 0 36 36" class="circular-chart red">
+                      <path class="circle-bg"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <path class="circle"
+                        stroke-dasharray="${percent}, 100"
+                        d="M18 2.0845
+                          a 15.9155 15.9155 0 0 1 0 31.831
+                          a 15.9155 15.9155 0 0 1 0 -31.831"
+                      />
+                      <text x="18" y="20.35" class="percentage">${percent}%</text>
+                    </svg>
+                </div>
+            </div>
+            <button class="removePlanning" id="${item.planning_id}">Remove Planning</button></div>`)
+        })
+      },
+      error: function(xhr, status, error) {
+      }
+    });  
+
+    $('#addPlanning').on('click', function(){
+      $("#myModal").css("display", "block");
+    })
+
+    $('#planningForm').on('submit', function(e) {
+      e.preventDefault();
+      const planName = $('#planName').val()
+      const target = $('#target').val()
+
+      $.ajax({
+        url: '/wallet/addplan',
+        method: 'POST', 
+        contentType: 'application/json',
+        data: JSON.stringify({ name: planName, target: target }),
+        success: function() {
+          console.log('success');
+          $("#myModal").css("display", "none");
+          window.location.reload();
+        },
+        error: function(xhr, status, error) {
+          //
+        }
+      })
+    })
+
+    $('#planningContainer').on('click', '.removePlanning', function() {
+      const ans = window.confirm('Are you sure you want to remove the planning?');
+
+      if (ans) {
+        const id = $(this).attr('id');
+
+        $.ajax({
+          url: '/wallet/removeplan',
+          method: 'POST', 
+          contentType: 'application/json',
+          data: JSON.stringify({ id: id }),
+          success: function() {
+            console.log('remove success');
+            window.location.reload();
+          },
+          error: function(xhr, status, error) {
+            //
+          }
+        })
+      } else {
+        // whatever
+      }
+    })
+  }
 
 });

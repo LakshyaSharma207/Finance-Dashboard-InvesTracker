@@ -41,7 +41,7 @@ router.get('/fetch', (req, res) => {
 
 router.post('/addnew', (req, res) => {
     const userId = req.session.userId;
-    const { name, amount, type } = req.body;
+    const { name, amount, type, currency } = req.body;
 
     if(name.length < 1 || amount.length < 1) {
         res.status(400).send({ error: 'Name and Amount are required fields' });
@@ -51,8 +51,8 @@ router.post('/addnew', (req, res) => {
         
         const sqlSearch = "SELECT * FROM users WHERE userId = ?"
         const search_query = mysql.format(sqlSearch, [userId]) 
-        const sqlInsert = "INSERT INTO transaction (type, date, name, amount, userId) VALUES (?, CURDATE(), ?, ?, ?)"
-        const insert_query = mysql.format(sqlInsert, [type, name, amount, userId])
+        const sqlInsert = "INSERT INTO transaction (type, date, name, amount, userId, currency) VALUES (?, CURDATE(), ?, ?, ?, ?)"
+        const insert_query = mysql.format(sqlInsert, [type, name, amount, userId, currency])
 
         await connection.query (search_query, async (err, result) => {  
             connection.release();
