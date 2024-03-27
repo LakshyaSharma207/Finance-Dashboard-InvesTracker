@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>signup</title>
+    <link type="text/css" rel="stylesheet" href="./signup.css">
 </head>
 <body>
-    
-<h2>Sign Up</h2>
+    <div class="login-container">
+        <img src="./assets/logo.svg">
 
-<form id="signup-form">
-    Enter Name: <input type="text" id="name" placeholder="Name"><br><br>
-    Enter Password: <input type="password" id="password" placeholder="password"><br><br>
-    Re-Enter Password: <input type="password" id="re-password" placeholder="re-enter password"><br><br>
-    <input type="submit">
-</form>
+        <h2>Sign Up</h2>
 
+        <form id="signup-form">
+            <input type="text" id="name" placeholder="Name"><br><br>
+            <input type="password" id="password" placeholder="Password"><br><br>
+            <input type="password" id="re-password" placeholder="Re-enter password"><br><br>
+            <input type="submit">
+        </form>
+    </div>
 <script src="./jquery.js"></script>
 <script src="./index.js"></script>
 </body>
