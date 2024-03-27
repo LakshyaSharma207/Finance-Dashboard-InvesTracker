@@ -35,6 +35,8 @@ const transactionsRoute = require('./routes/transactions.js');
 const signUpRoute = require('./routes/newUser.js');
 const loginRoute = require('./routes/login.js');
 const walletRoute = require('./routes/wallet.js');
+const profileRoute = require('./routes/profile.js');
+const transferRoute = require('./routes/transfer.js');
 
 // parsing middleware
 app.use(express.json());
@@ -45,11 +47,17 @@ app.use('/signup', signUpRoute);
 // authenticate users when logging
 app.use('/login', loginRoute);
 
+// handle transfer routing
+app.use('/', transferRoute);
+
 // handle transaction page routing
 app.use('/transactions', transactionsRoute);
 
 // handle wallet page routing
 app.use('/wallet', walletRoute);
+
+// handle profile routing
+app.use('/profile', profileRoute)
 
 app.listen(3000, () => {
     console.log('server running at localhost:3000');

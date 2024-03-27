@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>Finance Dashboard</title>
+    <link type="text/css" rel="stylesheet" href="./style.css">
+    <title>Profile</title>
     <link rel="shortcut icon" href="/assets/logo.svg" type="image/x-icon">
 </head>
-<body class="body">
+<body>
     <header class="header"></header>
     <main class="mainContent">
         <div class="topSection">
-            <h2>Transactions</h2>
+            <h2>Dashboard</h2>
             <div class="top-right">
                 <input type="text" class="search-bar" placeholder="Search...">
                 <svg class="svg icon-btn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -22,41 +22,37 @@
                 </svg>                 
             </div>
         </div>
-        <!-- Investments table -->
-        <div class="tableWrapper">
-            <div class="table-header">
-                <p>Transactions</p>
-                <a href="/transactions/addnew"><button id="addTransaction">+ Add Transaction</button></a>
+        <div id="profile-container">
+        <div class="profile-header">
+            <div class="profile-icon">
+                <img src="./assets/profile-circle-svgrepo-com.svg" alt="Profile Icon">
             </div>
-            <table id="investmentTable" cellpadding="20" >
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Currency</th>
-                        <th>Type</th>
-                        <th>Amount</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+            <h2>Welcome, <span class="profile-name">Alexander</span></h2>
         </div>
-    </main>
 
-    <!-- display modal  -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-        <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
-      </svg></span>
-      <p>Some text in the Modal..</p>
+        <div class="profile-info">
+            <p>Name: <span class="profile-name">Alexander Szalovski</span></p>
+            <p>Gender: <span id="profileGender">Male</span></p>
+            <p>Phone: +91 <span id="profilePhone">98745 98745</span></p>
+            <p>Email: <span id="profileEmail">johndoe@example.com</span></p>
+        </div>
+
+        <div class="edit-profile">
+            <a href="/profile/edit">Edit Profile</a>
+        </div>
     </div>
-</div>
-    
+    </main>
+     <!-- display modal  -->
+     <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+          </svg></span>
+          <p>Some text in the Modal..</p>
+        </div>
+    </div>
+
 <script src="./jquery.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="./index.js"></script>
 </body>
 </html>

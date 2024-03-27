@@ -49,7 +49,7 @@ router.post('/addnew', (req, res) => {
     db.getConnection(async (err, connection) => { 
         if (err) throw (err)
         
-        const sqlSearch = "SELECT * FROM users WHERE userId = ?"
+        const sqlSearch = "SELECT amount FROM wallet WHERE userId = ?"
         const search_query = mysql.format(sqlSearch, [userId]) 
         const sqlInsert = "INSERT INTO transaction (type, date, name, amount, userId, currency) VALUES (?, CURDATE(), ?, ?, ?, ?)"
         const insert_query = mysql.format(sqlInsert, [type, name, amount, userId, currency])
@@ -59,11 +59,25 @@ router.post('/addnew', (req, res) => {
             if (err) throw (err);
 
             if (result.length != 0) {
-                await connection.query (insert_query, async (err, result) => {
-                    if (err) throw (err);
-                    console.log('added new transaction')
-                    res.send({ success: true })
-                });
+                if(result[0].amount < amount) {
+                    res.status(400).send({ error: 'Not enough money in wallet' })
+                } else {
+                    await connection.query (insert_query, async (err, result) => {
+                        if (err) throw (err);
+                        const walletsearch = "SELECT wallet_id from wallet WHERE userId = ?;";
+                        const wallet_query = mysql.format(walletsearch, [userId]);
+                        await connection.query (wallet_query, async (err, wallet) => {
+                            const walletId = wallet[0].wallet_id;
+                            const sqlUpdate = "UPDATE wallet SET amount = amount - ? where wallet_id = ?";
+                            const update_query = mysql.format(sqlUpdate, [amount, walletId]);
+                            await connection.query(update_query, (err, result)=>{
+                                if (err) throw (err);
+                                console.log("Updated Wallet")
+                                res.send({ success: true })
+                            });
+                        });
+                    });
+                }
             } else {
                 res.status(409).send({ error: 'User doesn\'t exist.' });
             }

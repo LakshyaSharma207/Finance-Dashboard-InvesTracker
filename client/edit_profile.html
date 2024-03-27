@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/style.css">
+    <title>Edit Profile</title>
+    <link rel="shortcut icon" href="/assets/logo.svg" type="image/x-icon">
+</head>
+<body>
+    <header class="header"></header>
+    <main class="mainContent">
+        <div class="topSection">
+            <h2>Edit Profile</h2>
+            <div class="top-right">
+                <input type="text" class="search-bar" placeholder="Search...">
+                <svg class="svg icon-btn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M9.6 2.6A2 2 0 0 1 11 2h2a2 2 0 0 1 2 2l.5.3a2 2 0 0 1 2.9 0l1.4 1.3a2 2 0 0 1 0 2.9l.1.5h.1a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2l-.3.5a2 2 0 0 1 0 2.9l-1.3 1.4a2 2 0 0 1-2.9 0l-.5.1v.1a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2l-.5-.3a2 2 0 0 1-2.9 0l-1.4-1.3a2 2 0 0 1 0-2.9l-.1-.5H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2l.3-.5a2 2 0 0 1 0-2.9l1.3-1.4a2 2 0 0 1 2.9 0l.5-.1V4c0-.5.2-1 .6-1.4ZM8 12a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z" clip-rule="evenodd"/>
+                </svg>                
+                <a class="svg-link" href="/profile"><svg class="svg icon-btn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd" d="M12 20a8 8 0 0 1-5-1.8v-.6c0-1.8 1.5-3.3 3.3-3.3h3.4c1.8 0 3.3 1.5 3.3 3.3v.6a8 8 0 0 1-5 1.8ZM2 12a10 10 0 1 1 10 10A10 10 0 0 1 2 12Zm10-5a3.3 3.3 0 0 0-3.3 3.3c0 1.7 1.5 3.2 3.3 3.2 1.8 0 3.3-1.5 3.3-3.3C15.3 8.6 13.8 7 12 7Z" clip-rule="evenodd"/>
+                </svg></a>             
+            </div>
+        </div>
+        <div id="profile-container">
+            <form id="editForm">
+                Full Name: <input type="text" required maxlength="35" id="editName">
+                <br>
+                <br>
+                Gender: <select id="editGender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Rather Not Say">Rather not say</option>
+                </select>
+                <br>
+                <br>
+                Phone: <select>
+                    <option>Turkey (+90)</option>
+                    <option selected="selected">India (+91)</option>
+                    <option>Russia (+7)</option>
+                </select>
+                <input type="phone" maxlength="10" id="editPhone" required>
+                <br>
+                <br>
+                Email: <input type="email" id="editEmail" required>
+                <br>
+                <br>
+                <div class="edit-profile">
+                    <button type="submit">Submit Updates</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    </main>
+     <!-- display modal  -->
+     <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+          </svg></span>
+          <p>Some text in the Modal..</p>
+        </div>
+    </div>
+
+<script src="/jquery.js"></script>
+<script src="/index.js"></script>
+</body>
+</html>

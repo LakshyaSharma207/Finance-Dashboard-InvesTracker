@@ -1,7 +1,21 @@
 $(document).ready(function () {
+  // initializing stuff
+  const currentPage = window.location.href;
+  const header = 'http://localhost:3000'
+  var chartData = {};
+  var valuesArray = []; 
+
   // attach header to each page
   $(function(){
-      $("header").load("/header.html"); 
+    $("header").load("/header.html", function() { 
+      const navbar = $('.navbar').children();
+      navbar.each(function() {
+        let href = header + $(this).attr('href');
+        if (href === currentPage) {
+          $(this).addClass('navbtn-active')
+        }
+      })
+    })
   });
 
   // modal script 
@@ -15,10 +29,6 @@ $(document).ready(function () {
     }
   });
 
-  const currentPage = window.location.href;
-  const header = 'http://localhost:3000'
-  var chartData = {};
-  var valuesArray = []; 
   // get current Date
   const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   const today = new Date()
@@ -30,25 +40,30 @@ $(document).ready(function () {
   $('.currentMonth').html(`For ${month}, ${year}`);
 
   // Total Asset Calculation
-  if ($('#assetValue').length) {
-  var total = 0;
+  if (currentPage === header + '/') {
+    var total = 0;
     $.ajax({
       url: '/transactions/fetch',
       method: 'GET', 
       success: function(data) {
-          transactionData = data.data;
-          transactionData.forEach(tr => {
-            total += tr.amount;
-            let type = tr.type.toString();
-            
-            if (chartData[type] === undefined){
-              chartData[type] = tr.amount;
-            } else {
-              chartData[type] += tr.amount;
-            }
-          });
-          console.log(chartData)
-          $('#assetValue').text(`₹${total}`);
+        transactionData = data.data;
+        transactionData.forEach(tr => {
+          // set options
+          $('#fromAsset').append(`<option value="${tr.amount}">${tr.name}</option>`)
+
+          // get total amount
+          total += tr.amount;
+          let type = tr.type.toString();
+          
+          if (chartData[type] === undefined){
+            chartData[type] = tr.amount;
+          } else {
+            chartData[type] += tr.amount;
+          }
+        });
+        $('#assetValue').text(`₹${total}`);
+
+        // pie chart in dashboard
         if ($('#myChart').length) {
           const valuesArray = [chartData['Real Estate'], chartData['Stock'], chartData['Bonds'], chartData['Cryptocurrencies'], chartData['Commodities']];
           const ctx = $('#myChart');
@@ -84,9 +99,39 @@ $(document).ready(function () {
         $('#assetValue').text('no assets owned')
       }
     });  
+
+    $('#fromAsset').on('change', function() {
+      $('#transferAmount').text(this.value)
+    })
+
+    // POST request to transfer money
+    $('#transferForm').on('submit', function(e) {
+      e.preventDefault();
+      const assetName = $('#fromAsset option:selected').text();
+      const assetValue = $('#fromAsset').val();
+
+      if (assetValue == 0) {
+        $("#myModal").css("display", "block");
+        $("#myModal p").text('Transfer cannot be empty');
+        return;
+      }
+      $.ajax({
+        url: '/transfer',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ assetName: assetName, assetValue: assetValue }),
+        success: function(data) {
+          console.log('Success!');
+          window.location.reload();
+        },
+        error: function(xhr, status, error) {
+          const errorMessage = JSON.parse(xhr.responseText).error;
+          $("#myModal").css("display", "block");
+          $("#myModal p").text(errorMessage);
+        }
+      })
+    })
   }
-  
-  // pie chart in dashboard
 
   // copy event in Investments table
   $('#investmentTable').on('click', '.copy-svg', function() {
@@ -331,6 +376,53 @@ $(document).ready(function () {
       } else {
         // whatever
       }
+    })
+  }
+  // GET request for profile
+  if (currentPage === header + "/profile"){
+    $.ajax({
+      url: '/profile/fetch',
+      method: 'GET', 
+      success: function(data) {
+        const userData = data.data[0];
+
+        $('.profile-name').text(userData.userName);
+        $('#profileGender').text(`${ userData.gender ?? 'undefined' }`)
+        $('#profilePhone').text(`${ userData.phone ?? 'undefined' }`)
+        $('#profileEmail').text(`${ userData.email ?? 'undefined' }`)
+      },
+      error: function(xhr, status, error) {
+        const errorMessage = JSON.parse(xhr.responseText).error;
+        $("#myModal").css("display", "block");
+        $("#myModal p").text(errorMessage);
+      }
+    });  
+  }
+
+  if (currentPage == header + "/profile/edit") {
+    $('#editForm').on('submit', function(e) {
+      console.log('ok')
+      e.preventDefault();
+      const newName = $('#editName').val();
+      const newPhone = $('#editPhone').val();
+      const newEmail = $('#editEmail').val();
+      const newGender = $('#editGender').val();
+
+      $.ajax({
+        url: '/profile/update',
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ newName, newPhone, newEmail, newGender }),
+        success: function(data) {
+          console.log('success in updating profile');
+          window.location.href = header + '/profile';
+        },
+        error: function(xhr, status, error) { 
+          const errorMessage = JSON.parse(xhr.responseText).error;
+          $("#myModal").css("display", "block");
+          $("#myModal p").text(errorMessage);
+        }
+      })
     })
   }
 

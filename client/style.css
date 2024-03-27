@@ -60,7 +60,7 @@ body {
     padding: 15px 20px;
     border-radius: 15px;
     text-decoration: none;
-    color: var(--text-color) !important;
+    color: var(--text-color);
     font-weight: bold;
     font-size: large;
     transition: background-color 0.3s;
@@ -72,7 +72,7 @@ body {
 }
 
 .navbtn-active {
-    background-color: var(--btn-color);
+    background-color: var(--btn-color) !important;
     color: white !important;
 }
 
@@ -132,7 +132,7 @@ body {
     width: 200px;
     padding: 20px;
     margin-inline: auto;
-    margin-top: 200px;
+    margin-top: 180px;
     text-align: center;
     display: flex;
     flex-direction: column !important;
@@ -142,7 +142,7 @@ body {
     scale: 1.2;
     border: var(--bg-color) 1px solid;
     border-radius: 20px;
-    background-color: rgba(0,0,0,0.3);
+    background-color: var(--bg-color);
 }
 
 .login-container input {
@@ -170,8 +170,8 @@ body {
     cursor: pointer;
     border: none;
 }
-.login-container a {
-    color: var(--bg-color);
+.login-container a:hover {
+    color: var(--text-color);
 }
 
 /* topbar styles */
@@ -189,13 +189,16 @@ body {
 .topSection {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 650px;
     width: 100%;
     font-weight: bold;
     font-size: 20px;
     border-bottom: var(--border-color) 1px solid;
+}
+
+.topSection h2 {
+    padding-left: 20px;
 }
 
 .top-right {
@@ -204,6 +207,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 15px;
+    padding-right: 20px;
 }
 
 .search-bar {
@@ -227,6 +231,8 @@ body {
 
 .icon-btn {
     cursor: pointer;
+    width: 26px;
+    height: 26px;
     transition: color 0.3s scale 0.4s;
 }
 .icon-btn:hover {
@@ -317,7 +323,7 @@ body {
     width: var(--main-section-width);
     height: 50%;
     margin: 5px;
-    padding: 20px;
+    padding: 15px;
     border: none;
     border-radius: 20px;
     background-color: var(--section-color);
@@ -332,7 +338,7 @@ body {
 
 .legend {
     display: grid;
-    margin-left: 80px;
+    margin-left: 50px;
     grid-template-columns: auto auto auto;
     column-gap: 10px;
 }
@@ -364,7 +370,7 @@ body {
 
 .tableWrapper {
     background-color: var(--section-color);
-    width: var(--main-section-width);
+    width: calc(var(--main-section-width) + 40px);
     margin: 20px;
     border: none;
     border-radius: 20px;
@@ -464,7 +470,7 @@ body {
     color: black;
     position: absolute;
     top: -46px;
-    left: 8px;
+    left: -20px;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
 }
@@ -516,7 +522,7 @@ body {
     box-sizing: border-box; 
 }
 #addTransactionForm fieldset input[type="radio"] { 
-    width: 20%; 
+    width: 10%; 
 }
 #addTransactionForm .btn {
     background-color: var(--btn-color);
@@ -696,4 +702,133 @@ body {
 }
 #planningForm button{
     margin-left: 100px;
+}
+
+/* profile styles */
+#profile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-icon {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.profile-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-info {
+    margin-bottom: 20px;
+}
+
+.edit-profile a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.edit-profile a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#profile-container input {
+    color: black;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px  solid #ccc;
+    padding: 8px;
+}
+
+#profile-container select, #profile-container option {
+    color: black;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px  solid #ccc;
+    padding: 8px;
+}
+
+#profile-container button {
+    margin-top: 20px;
+    padding: 5px;
+}
+
+#profile-container button:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+#profile-container button:active {
+    transform: translateY(1px);
+}
+
+.svg-link {
+    color: white;
+    margin-top: 5px;
+}
+
+/* transfer form  */
+.transfer-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+    width: 100%;
+}
+  
+.transfer-form .form-container {
+    background-color: var(--section-color);
+    border: var(--border-color) 2px solid;
+    border-radius: 10px;
+    padding: 20px;
+    width: 70%;
+}
+
+#transferForm {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+  
+#transferForm label {
+    display: block;
+    margin-top: 20px;
+    font-weight: bold;
+}
+  
+#transferForm select, #transferForm input, #transferForm button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+  
+ #transferForm button {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: none;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all;
+    transition-duration: 0.2s;
+}
+  
+ #transferForm button:hover {
+    background-color: var(--btn-color);
+    color: white;
 }

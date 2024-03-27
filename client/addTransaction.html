@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="/style.css">
     <title>Finance Dashboard</title>
-    <link rel="shortcut icon" href="#">
+    <link rel="shortcut icon" href="/assets/logo.svg" type="image/x-icon">
 </head>
 <body class="body">
     <header class="header"></header>
     <main class="mainContent">
         <div class="topSection">
-            <h2>Dashboard</h2>
+            <h2>Add Transaction</h2>
             <div class="top-right">
                 <input type="text" class="search-bar" placeholder="Search...">
                 <svg class="svg icon-btn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -40,8 +40,8 @@
             </fieldset> 
             <fieldset> 
                 <legend>Currency</legend> 
-                <div style="display: flex; margin-top: 5px;"><input type="radio" name="currency" value="Credit">Credit</div>
-                <div style="display: flex;"><input type="radio" name="currency" value="Crypto">Cryptocurrency</div>
+                <div style="display: flex; gap: 10px; margin-top: 10px;"><input type="radio" name="currency" value="Credit">Credit</div>
+                <div style="display: flex; gap: 10px; margin-top: 10px;"><input type="radio" name="currency" value="Crypto">Cryptocurrency</div>
             </fieldset> 
             <fieldset> 
                 <legend>Amount</legend> 
@@ -50,6 +50,16 @@
             <button type="submit" class="btn">Add Transaction</button>
         </form>
     </main>
+
+    <!-- display modal  -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+        <span class="close"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm7.707-3.707a1 1 0 0 0-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 1 0 1.414 1.414L12 13.414l2.293 2.293a1 1 0 0 0 1.414-1.414L13.414 12l2.293-2.293a1 1 0 0 0-1.414-1.414L12 10.586 9.707 8.293Z" clip-rule="evenodd"/>
+        </svg></span>
+        <p>Some text in the Modal..</p>
+        </div>
+    </div>
     
 <script src="/jquery.js"></script>
 <script src="/index.js"></script>
