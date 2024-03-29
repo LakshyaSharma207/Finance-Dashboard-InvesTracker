@@ -6,7 +6,15 @@
 <img width="1080" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/dc302833-885d-4bc5-9498-cd3feb90626d">
 <img width="1080" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/070ac3b6-1964-47f2-bc88-c34419e4efe8">
 
+# What is the Project
 
+It's a simple asset management website where users can list their transactions, analyze their total share of assets and set planning targets for future purchases.
+
+The website was made using -
+
+- HTML, CSS and jQuery in the frontend
+- Nodejs-Express in the backend
+- MySQL Workbench to design the sql schema
 
 # Installation and Running Project
 
