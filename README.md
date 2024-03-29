@@ -2,11 +2,8 @@
 
 ![logo](https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/526ab224-e1fe-4504-b73d-715af40fdb65)
 
-<img width="720" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/dc302833-885d-4bc5-9498-cd3feb90626d"><img width="720" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/070ac3b6-1964-47f2-bc88-c34419e4efe8">
-
-
-<img width="1385" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/d29302a1-dfcb-4913-885a-d5cb43b11ef9">
-
+<img width="1080" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/dc302833-885d-4bc5-9498-cd3feb90626d">
+<img width="1080" alt="image" src="https://github.com/LakshyaSharma207/Finance-Dashboard-InvesTracker/assets/124886897/070ac3b6-1964-47f2-bc88-c34419e4efe8">
 
 
 
